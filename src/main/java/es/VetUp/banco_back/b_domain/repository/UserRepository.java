@@ -1,4 +1,12 @@
 package es.VetUp.banco_back.b_domain.repository;
 
-public class UserRepository {
+import es.VetUp.banco_back.b_domain.model.User;
+import es.VetUp.banco_back.b_domain.repository.entity.UserEntity;
+
+import java.util.Optional;
+
+public interface UserRepository {
+    Optional<UserEntity> findByUsername(String username);
+    Optional<UserEntity> findByDni(String dni);
+
 }

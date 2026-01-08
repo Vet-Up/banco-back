@@ -1,4 +1,12 @@
 package es.VetUp.banco_back.c_persistence.dao.jpa;
 
-public class UserJpaDao {
+import es.VetUp.banco_back.b_domain.model.User;
+import es.VetUp.banco_back.c_persistence.dao.jpa.entity.UserJpaEntity;
+
+import java.util.Optional;
+
+public interface UserJpaDao {
+    Optional<UserJpaEntity> getByUsername(String username);
+    Optional<UserJpaEntity> getByDni(String dni);
+    UserJpaEntity getByApiKey(String apiKey);
 }

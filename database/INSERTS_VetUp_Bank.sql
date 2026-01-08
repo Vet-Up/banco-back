@@ -1,3 +1,7 @@
+-- ============================================
+-- INSERT DATA
+-- ============================================
+
 -- Transaction Types
 INSERT INTO BankTransactionType (transaction_type_id, name) VALUES
 (1, 'Debit'),
@@ -10,11 +14,11 @@ INSERT INTO BankTransactionOrigin (transaction_origin_id, name) VALUES
 (3, 'BankCard');
 
 -- Users
-INSERT INTO Users (login, password, first_name, last_name1, last_name2, dni) VALUES
-('jdoe', 'hashedpass123', 'John', 'Doe', 'Smith', '12345678A'),
-('mroberts', 'pass456', 'Michael', 'Roberts', 'Johnson', '87654321B'),
-('sandra.p', 'pass789', 'Sandra', 'Perez', 'Lopez', '11223344C'),
-('knguyen', 'pass999', 'Kevin', 'Nguyen', 'Tran', '99887766D');
+INSERT INTO Users (username, password, first_name, last_name1, last_name2, dni, api_key ) VALUES
+('jdoe', 'hashedpass123', 'John', 'Doe', 'Smith', '12345678A', 'token_jdoe_001'),
+('mroberts', 'pass456', 'Michael', 'Roberts', 'Johnson', '87654321B', 'token_mroberts_002'),
+('sandra.p', 'pass789', 'Sandra', 'Perez', 'Lopez', '11223344C', 'token_sandra_003'),
+('knguyen', 'pass999', 'Kevin', 'Nguyen', 'Tran', '99887766D', 'token_knguyen_004');
 
 -- Bank Accounts
 INSERT INTO BankAccount (balance, iban, id_user) VALUES

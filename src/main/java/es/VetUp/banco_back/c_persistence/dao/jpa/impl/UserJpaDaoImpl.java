@@ -36,13 +36,21 @@ public class UserJpaDaoImpl implements UserJpaDao {
         }
     }
 
+    @Override
+    public Optional<Boolean> existsByApiKey(String username, String apiKey) {
+       String query = "SELECT COUNT(u) FROM UserJpaEntity u WHERE u.username = :username AND u.apiKey = :apiKey";
+       Long count = entityManager.createQuery(query, Long.class)
+               .setParameter("username", username)
+               .setParameter("apiKey", apiKey)
+               .getSingleResult();
+       return Optional.of(count > 0);
+    }
 
     @Override
-    public UserJpaEntity getByApiKey(String apiKey) {
-        String sql = "SELECT u FROM UserJpaEntity u WHERE u.apiKey = :apiKey";
-        return entityManager.createQuery(sql, UserJpaEntity.class)
-                .setParameter("apiKey", apiKey)
+    public Long count() {
+        return entityManager.createQuery("SELECT COUNT(u) FROM UserJpaEntity u", Long.class)
                 .getSingleResult();
     }
+
 
 }

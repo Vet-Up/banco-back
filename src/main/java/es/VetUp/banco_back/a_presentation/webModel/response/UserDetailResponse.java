@@ -7,7 +7,6 @@ public record UserDetailResponse(
         String name,
         String firstSurname,
         String secondSurname,
-        String dni,
-        String apiKey
+        String dni
 ) {
 }

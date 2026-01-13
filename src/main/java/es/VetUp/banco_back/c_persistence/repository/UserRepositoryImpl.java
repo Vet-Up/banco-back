@@ -16,11 +16,18 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public Optional<UserEntity> findByUsername(String username) {
-        return userJpaDao.getByUsername(username).map(UserPersistenceMapper.getInstance()::fromUserJpaEntityToUserEntity);
+        return userJpaDao.getByUsername(username)
+            .map(UserPersistenceMapper.getInstance()::fromUserJpaEntityToUserEntity);
     }
 
     @Override
     public Optional<UserEntity> findByDni(String dni) {
-        return userJpaDao.getByDni(dni).map(UserPersistenceMapper.getInstance()::fromUserJpaEntityToUserEntity);
+        return userJpaDao.getByDni(dni)
+            .map(UserPersistenceMapper.getInstance()::fromUserJpaEntityToUserEntity);
+    }
+
+    @Override
+    public Optional<Boolean> existsByApiKey(String username, String apiKey) {
+        return userJpaDao.existsByApiKey(username, apiKey);
     }
 }

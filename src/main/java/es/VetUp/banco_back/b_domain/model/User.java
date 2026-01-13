@@ -66,4 +66,18 @@ public class User {
     public int hashCode() {
         return Objects.hash(userId, username, password, name, firstSurname, secondSurname, dni);
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", firstSurname='" + firstSurname + '\'' +
+                ", secondSurname='" + secondSurname + '\'' +
+                ", dni='" + dni + '\'' +
+                ", apiKey='" + apiKey + '\'' +
+                '}';
+    }
 }

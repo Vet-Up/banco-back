@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import org.checkerframework.checker.units.qual.C;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 @Entity
 @Table(name = "Users")
@@ -80,5 +81,17 @@ public class UserJpaEntity implements Serializable {
 
     public String getApiKey() {
         return apiKey;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        UserJpaEntity that = (UserJpaEntity) o;
+        return Objects.equals(userId, that.userId) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(name, that.name) && Objects.equals(firstSurname, that.firstSurname) && Objects.equals(secondSurname, that.secondSurname) && Objects.equals(dni, that.dni) && Objects.equals(apiKey, that.apiKey);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId, username, password, name, firstSurname, secondSurname, dni, apiKey);
     }
 }

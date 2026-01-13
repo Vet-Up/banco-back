@@ -18,12 +18,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto authenticate(String username, String apiKey) {
-        return userRepository.findByUsername(username)
-            .map(userEntity -> UserMapper.getInstance().fromUserToUserDto(
-                UserMapper.getInstance().fromUserEntityToUser(userEntity)))
-            .filter(userDto -> userDto.apiKey().equals(apiKey))
-            .orElseThrow(() -> new ResourceNotFoundException("Usuario o API key incorrectos"));
+    public Boolean authenticate(String username, String apiKey) {
+        return userRepository.existsByApiKey(username, apiKey)
+            .orElseThrow(() -> new ResourceNotFoundException("User with username " + username + " not found."));
     }
 
     @Override

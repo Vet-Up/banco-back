@@ -21,7 +21,7 @@ INSERT INTO Users (username, password, first_name, last_name1, last_name2, dni, 
 ('knguyen', 'pass999', 'Kevin', 'Nguyen', 'Tran', '99887766D', 'token_knguyen_004');
 
 -- Bank Accounts
-INSERT INTO BankAccount (balance, iban, id_user) VALUES
+INSERT INTO BankAccount (balance, iban, user_id) VALUES
 (1500.00, 'ES7620770024003102575766', 1),
 (3200.50, 'ES1200492352123456789012', 2),
 (980.75, 'ES4501827364512345678901', 3),

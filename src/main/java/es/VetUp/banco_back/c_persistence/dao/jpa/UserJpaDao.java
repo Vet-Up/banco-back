@@ -8,5 +8,6 @@ import java.util.Optional;
 public interface UserJpaDao {
     Optional<UserJpaEntity> getByUsername(String username);
     Optional<UserJpaEntity> getByDni(String dni);
-    UserJpaEntity getByApiKey(String apiKey);
+    Optional<Boolean> existsByApiKey(String username, String apiKey);
+    Long count();
 }

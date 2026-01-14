@@ -1,7 +1,6 @@
 package es.VetUp.banco_back.a_presentation.mapper;
 
 import es.VetUp.banco_back.a_presentation.webModel.response.UserDetailResponse;
-import es.VetUp.banco_back.a_presentation.webModel.response.UserSummaryResponse;
 import es.VetUp.banco_back.b_domain.service.dto.UserDto;
 
 public class UserPresentationMapper {
@@ -26,22 +25,10 @@ public class UserPresentationMapper {
                 userDto.name(),
                 userDto.firstSurname(),
                 userDto.secondSurname(),
-                userDto.dni(),
-                userDto.apiKey()
+                userDto.dni()
         );
     }
 
-    public static UserSummaryResponse fromUserDtoToUserSummaryResponse(UserDto userDto) {
-        return new UserSummaryResponse(
-                userDto.userId(),
-                userDto.username(),
-                userDto.password(),
-                userDto.name(),
-                userDto.firstSurname(),
-                userDto.secondSurname(),
-                userDto.dni(),
-                userDto.apiKey()
-        );
-    }
+
 
 }

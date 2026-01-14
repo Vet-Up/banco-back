@@ -17,7 +17,7 @@ CREATE TABLE BankTransactionOrigin (
 -- ============================
 
 CREATE TABLE Users (
-    id_user BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL,
     password VARCHAR(100) NOT NULL,
     first_name VARCHAR(50),
@@ -31,8 +31,8 @@ CREATE TABLE BankAccount (
     account_id BIGINT AUTO_INCREMENT PRIMARY KEY,
     balance DECIMAL(15,2) DEFAULT 0,
     iban VARCHAR(34) UNIQUE NOT NULL,
-    id_user BIGINT NOT NULL,
-    FOREIGN KEY (id_user) REFERENCES Users(id_user)
+    user_id BIGINT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
 
 CREATE TABLE CreditCard (

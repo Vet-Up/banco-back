@@ -39,7 +39,7 @@ INSERT INTO BankAccount (balance, iban, user_id) VALUES
 -- Credit Cards
 INSERT INTO CreditCard (card_number, expiration_date, cvc, full_name, account_id) VALUES
 ('4111111111111111', '2027-12-31', '123', 'John Doe Smith', 1),
-('4111111111111121', '2027-12-31', '123', 'John Doe Smith', 1),
+('4111111111111121', '2028-11-30', '123', 'John Doe Smith', 1),
 ('5500000000000004', '2028-05-31', '456', 'Michael Roberts Johnson', 3),
 ('340000000000009', '2027-09-30', '789', 'Sandra Perez Lopez', 4),
 ('30000000000004', '2029-03-31', '321', 'Kevin Nguyen Tran', 5),

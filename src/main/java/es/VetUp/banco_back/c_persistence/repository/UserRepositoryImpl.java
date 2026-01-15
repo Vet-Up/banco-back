@@ -32,4 +32,10 @@ public class UserRepositoryImpl implements UserRepository {
     public Optional<Boolean> existsByApiKey(String username, String apiKey) {
         return userJpaDao.existsByApiKey(username, apiKey);
     }
+
+    @Override
+    public Optional<UserEntity> findById(Long userId) {
+        return userJpaDao.getById(userId)
+            .map(UserPersistenceMapper.getInstance()::fromUserJpaEntityToUserEntity);
+    }
 }

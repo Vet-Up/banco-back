@@ -52,5 +52,17 @@ public class UserJpaDaoImpl implements UserJpaDao {
                 .getSingleResult();
     }
 
+    @Override
+    public Optional<UserJpaEntity> getById(Long userId) {
+        String sql = "SELECT u FROM UserJpaEntity u WHERE u.userId = :userId";
+        try {
+            return Optional.of(entityManager.createQuery(sql, UserJpaEntity.class)
+                    .setParameter("userId", userId)
+                    .getSingleResult());
+        } catch (Exception e) {
+            return Optional.empty();
+        }
+    }
+
 
 }

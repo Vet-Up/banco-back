@@ -9,6 +9,7 @@ public interface UserService {
     Boolean authenticate(String username, String apiKey);
     Optional<UserDto> findByUsername(String username);
     Optional<UserDto> findByDni(String dni);
+    Optional<UserDto> findById(Long userId);
 
 
 

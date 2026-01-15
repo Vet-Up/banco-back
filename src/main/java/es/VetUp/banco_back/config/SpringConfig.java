@@ -23,6 +23,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableJpaRepositories(basePackages = "es.VetUp.banco_back.c_persistence.dao.jpa")
@@ -38,7 +39,7 @@ public class SpringConfig {
     }
 
     @Bean
-    public UserService userService(UserRepository userRepository) {return new UserServiceImpl(userRepository);
+    public UserService userService(UserRepository userRepository, PasswordEncoder passwordEncoder) {return new UserServiceImpl(userRepository,passwordEncoder);
     }
 
     @Bean
@@ -86,6 +87,11 @@ public class SpringConfig {
     @Bean
     public CardPaymentService cardPaymentService(UserService userService,CreditCardService creditCardService, BankAccountService bankAccountService, BankTransactionService bankTransactionService) {
         return new CardPaymentServiceImpl(userService, creditCardService, bankAccountService, bankTransactionService);
+    }
+
+    @Bean
+    public JwtService jwtService(UserService userService) {
+        return new JwtServiceImpl(userService);
     }
 
 }

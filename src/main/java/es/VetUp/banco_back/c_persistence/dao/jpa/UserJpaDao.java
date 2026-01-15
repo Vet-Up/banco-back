@@ -10,4 +10,7 @@ public interface UserJpaDao {
     Optional<UserJpaEntity> getByDni(String dni);
     Optional<Boolean> existsByApiKey(String username, String apiKey);
     Long count();
+    Optional<UserJpaEntity> getById(Long userId);
+
+
 }

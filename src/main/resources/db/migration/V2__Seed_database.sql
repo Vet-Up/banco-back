@@ -14,11 +14,12 @@ INSERT INTO BankTransactionOrigin (transaction_origin_id, name) VALUES
 (3, 'BankCard');
 
 -- Users
+-- hashedpass123 pass456 pass789 pass999
 INSERT INTO Users (username, password, first_name, last_name1, last_name2, dni, api_key) VALUES
-('jdoe', 'hashedpass123', 'John', 'Doe', 'Smith', '12345678A', 'token_jdoe_001'),
-('mroberts', 'pass456', 'Michael', 'Roberts', 'Johnson', '87654321B', 'token_mroberts_002'),
-('sandra.p', 'pass789', 'Sandra', 'Perez', 'Lopez', '11223344C', 'token_sandra_003'),
-('knguyen', 'pass999', 'Kevin', 'Nguyen', 'Tran', '99887766D', 'token_knguyen_004');
+('jdoe', '$2a$12$aEq5AHMRIUYPy.0qWlFlLeiEglzA90Ith4J6/imEYAot8XFcBeWhm', 'John', 'Doe', 'Smith', '12345678A', 'token_jdoe_001'),
+('mroberts', '$2a$12$rukUvX9WF6pKizhupQ5X7.YwQzVtJ8lyuvQaXHOVT87TsP6G2/ISG', 'Michael', 'Roberts', 'Johnson', '87654321B', 'token_mroberts_002'),
+('sandra.p', '$2a$12$9pCXHTM5r7FAl6tbxwjf3.OiObcrBtf/SRvWVUXRoYwOPSIrZcpI6', 'Sandra', 'Perez', 'Lopez', '11223344C', 'token_sandra_003'),
+('knguyen', '$2a$12$YYcp34vni8ewz9bs1NgaseqiybX9DIT2/zMo.OqbRZHXUs4ws/Uui', 'Kevin', 'Nguyen', 'Tran', '99887766D', 'token_knguyen_004');
 
 -- Bank Accounts
 INSERT INTO BankAccount (balance, iban, user_id) VALUES

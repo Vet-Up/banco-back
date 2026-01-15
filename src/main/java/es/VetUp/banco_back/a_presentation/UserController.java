@@ -38,6 +38,14 @@ public class UserController {
         return new ResponseEntity<>(userDetailResponse, HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDetailResponse> getUserById(@PathVariable Long id){
+        UserDto userDto = userService.findById(id)
+                .orElseThrow(()-> new RuntimeException("User not found"));
+        UserDetailResponse userDetailResponse = UserPresentationMapper.getInstance().fromUserDtoToUserDetailResponse(userDto);
+        return new ResponseEntity<>(userDetailResponse, HttpStatus.OK);
+    }
+
     @PostMapping
     public ResponseEntity<UserDetailResponse> checkApiKey(@RequestBody ApiKeyRequest apiKeyRequest){
 

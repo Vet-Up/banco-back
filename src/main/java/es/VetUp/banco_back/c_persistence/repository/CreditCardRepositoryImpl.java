@@ -47,4 +47,11 @@ public class CreditCardRepositoryImpl implements CreditCardRepository {
     public Boolean isExpired(Long sourceCardId) {
         return creditCardJpaDao.isExpired(sourceCardId);
     }
+
+    @Override
+    public List<CreditCard> findByAccountId(Long accountId) {
+        return creditCardJpaDao.findByAccountId(accountId).stream()
+                .map(CreditCardPersistenceMapper::fromCreditCardJpaEntityToCreditCard)
+                .toList();
+    }
 }

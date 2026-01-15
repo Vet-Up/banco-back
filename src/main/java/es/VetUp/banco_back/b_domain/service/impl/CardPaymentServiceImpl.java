@@ -71,15 +71,13 @@ public class CardPaymentServiceImpl implements CardPaymentService {
     }
 
     private UserDto authenticateUser(CardPaymentRequest request) {
-        String login = request.authorization().login();
-        String apiToken = request.authorization().apiToken();
-
-        Boolean authenticated = userService.authenticate(login, apiToken);
-        if (!authenticated) {
-            throw new BusinessException("Credenciales de autenticación inválidas");
+        String username = request.authorization().login();
+        String apiKey = request.authorization().apiToken();
+        boolean isAuthenticated = userService.authenticate(username, apiKey);
+        if (!isAuthenticated) {
+            throw new BusinessException("Autenticación fallida");
         }
-
-        return userService.findByUsername(login)
+        return userService.findByUsername(username)
                 .orElseThrow(() -> new BusinessException("Usuario no encontrado"));
     }
 

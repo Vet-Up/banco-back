@@ -2,11 +2,9 @@ package es.VetUp.banco_back.c_persistence.repository;
 
 import es.VetUp.banco_back.b_domain.model.BankAccount;
 import es.VetUp.banco_back.b_domain.repository.BankAccountRepository;
-import es.VetUp.banco_back.b_domain.repository.entity.BankAccountEntity;
 import es.VetUp.banco_back.c_persistence.dao.jpa.BankAccountJpaDao;
 import es.VetUp.banco_back.c_persistence.dao.jpa.entity.BankAccountJpaEntity;
 import es.VetUp.banco_back.c_persistence.repository.mapper.BankAccountPersistenceMapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,32 +22,26 @@ public class BankAccountRepositoryImpl implements BankAccountRepository {
     @Override
     public List<BankAccount> getAllByUserId(Long userId) {
         return bankAccountJpaDao.getAllByUserId(userId).stream()
-                .map(this::toDomainModel)
+                .map(BankAccountPersistenceMapper.getInstance()::fromBankAccountJpaEntityToBankAccount)
                 .collect(Collectors.toList());
     }
 
     @Override
     public Optional<BankAccount> getByIban(String iban) {
         return bankAccountJpaDao.getByIban(iban)
-                .map(this::toDomainModel);
+                .map(BankAccountPersistenceMapper.getInstance()::fromBankAccountJpaEntityToBankAccount);
     }
 
     @Override
     public Optional<BankAccount> getById(Long accountId) {
         return bankAccountJpaDao.getById(accountId)
-                .map(this::toDomainModel);
+                .map(BankAccountPersistenceMapper.getInstance()::fromBankAccountJpaEntityToBankAccount);
     }
 
     @Override
     public BankAccount save(BankAccount bankAccount) {
-        BankAccountEntity entity = new BankAccountEntity(
-                bankAccount.getAccountId(),
-                bankAccount.getIban(),
-                bankAccount.getBalance(),
-                bankAccount.getUserId()
-        );
         BankAccountJpaEntity jpaEntity = BankAccountPersistenceMapper.getInstance()
-                .fromBankAccountEntityToBankAccountJpaEntity(entity);
+                .fromBankAccountToBankAccountJpaEntity(bankAccount);
         BankAccountJpaEntity savedEntity = bankAccountJpaDao.save(jpaEntity);
         return toDomainModel(savedEntity);
     }
@@ -60,12 +52,8 @@ public class BankAccountRepositoryImpl implements BankAccountRepository {
     }
 
     private BankAccount toDomainModel(BankAccountJpaEntity jpaEntity) {
-        return new BankAccount(
-                jpaEntity.getAccountId(),
-                jpaEntity.getIban(),
-                jpaEntity.getBalance(),
-                jpaEntity.getUser()
-        );
+        return BankAccountPersistenceMapper.getInstance()
+                .fromBankAccountJpaEntityToBankAccount(jpaEntity);
     }
 }
 

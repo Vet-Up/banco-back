@@ -40,5 +40,12 @@ public class BankTransactionController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-
+    @GetMapping("/by-card/{cardId}")
+    public ResponseEntity<List<BankTransactionSummaryResponse>> getTransactionsByCardId(@PathVariable Long cardId) {
+        List<BankTransaction> transactions = bankTransactionService.getAllTransactionsByCardId(cardId);
+        List<BankTransactionSummaryResponse> response = transactions.stream()
+                .map(BankTransactionPresentationMapper::fromBankTransactionToBankTransactionSummaryResponse)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
 }

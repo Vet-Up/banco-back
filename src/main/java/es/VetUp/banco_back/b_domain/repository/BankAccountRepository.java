@@ -1,8 +1,6 @@
 package es.VetUp.banco_back.b_domain.repository;
 
 import es.VetUp.banco_back.b_domain.model.BankAccount;
-import es.VetUp.banco_back.b_domain.repository.entity.BankAccountEntity;
-import es.VetUp.banco_back.c_persistence.dao.jpa.entity.BankAccountJpaEntity;
 
 import java.util.List;
 import java.util.Optional;

@@ -24,31 +24,112 @@ INSERT INTO Users (username, password, first_name, last_name1, last_name2, dni, 
 -- Bank Accounts
 INSERT INTO BankAccount (balance, iban, user_id) VALUES
 (1500.00, 'ES7620770024003102575766', 1),
+(1500.00, 'ES7620770024003102575764', 1),
 (3200.50, 'ES1200492352123456789012', 2),
 (980.75, 'ES4501827364512345678901', 3),
-(5400.00, 'ES9901827364512345678912', 4);
+(5400.00, 'ES9901827364512345678912', 4),
+(2750.25, 'ES6621000418401234567891', 1),
+(8500.00, 'ES9121000418450200051332', 2),
+(1200.00, 'ES7921000813610123456789', 3),
+(4300.75, 'ES3114650100722030876293', 4),
+(650.50, 'ES0049000123456789012345', 1),
+(12000.00, 'ES8200810012345678901234', 2),
+(3890.25, 'ES5930040012345678901234', 3);
 
 -- Credit Cards
 INSERT INTO CreditCard (card_number, expiration_date, cvc, full_name, account_id) VALUES
 ('4111111111111111', '2027-12-31', '123', 'John Doe Smith', 1),
-('5500000000000004', '2028-05-31', '456', 'Michael Roberts Johnson', 2),
-('340000000000009', '2027-09-30', '789', 'Sandra Perez Lopez', 3),
-('30000000000004', '2029-03-31', '321', 'Kevin Nguyen Tran', 4);
+('4111111111111121', '2027-12-31', '123', 'John Doe Smith', 1),
+('5500000000000004', '2028-05-31', '456', 'Michael Roberts Johnson', 3),
+('340000000000009', '2027-09-30', '789', 'Sandra Perez Lopez', 4),
+('30000000000004', '2029-03-31', '321', 'Kevin Nguyen Tran', 5),
+('30000000000005', '2029-03-31', '321', 'Kevin Nguyen Tran', 5),
+('4532015112830366', '2028-08-31', '542', 'John Doe Smith', 6),
+('4716182333661786', '2027-11-30', '887', 'Michael Roberts Johnson', 7),
+('5425233430109903', '2028-04-30', '234', 'Sandra Perez Lopez', 8),
+('4929598581234567', '2029-01-31', '156', 'Kevin Nguyen Tran', 9),
+('4539578763621486', '2027-07-31', '923', 'John Doe Smith', 10),
+('4916338506082832', '2028-10-31', '445', 'Michael Roberts Johnson', 11),
+('4024007198642889', '2029-06-30', '712', 'Sandra Perez Lopez', 12),
+('4556737586899855', '2026-03-31', '331', 'Sandra Perez Lopez', 12);
 
 -- Bank Transactions
 INSERT INTO BankTransaction (transaction_type_id, transaction_origin_id, source_card_id, transaction_date, amount, description, account_id) VALUES
+-- Transacciones cuenta 1 (John Doe - account 1)
 (1, 3, 1, '2026-01-07', 50.00, 'Grocery store purchase', 1),
 (2, 1, 1, '2026-01-06', 200.00, 'Salary deposit', 1),
+(1, 3, 1, '2026-01-08', 35.50, 'Gas station', 1),
+(1, 2, 1, '2026-01-10', 89.99, 'Netflix subscription', 1),
+(2, 1, 1, '2026-01-15', 1500.00, 'Monthly salary', 1),
 
+-- Transacciones cuenta 2 (John Doe - account 2)
 (1, 3, 2, '2026-02-01', 120.00, 'Electronics store purchase', 2),
 (2, 1, 2, '2026-02-03', 1800.00, 'Freelance payment', 2),
 (1, 2, 2, '2026-02-05', 60.00, 'Gym membership', 2),
+(1, 3, 2, '2026-02-07', 45.00, 'Book store', 2),
 
+-- Transacciones cuenta 3 (Michael Roberts)
 (2, 1, 3, '2026-01-15', 1500.00, 'Salary deposit', 3),
 (1, 3, 3, '2026-01-16', 45.20, 'Restaurant dinner', 3),
 (1, 2, 3, '2026-01-18', 89.99, 'Online subscription', 3),
+(1, 3, 3, '2026-01-20', 230.00, 'Furniture store', 3),
+(2, 1, 3, '2026-01-25', 500.00, 'Bonus payment', 3),
 
+-- Transacciones cuenta 4 (Sandra Perez)
 (2, 1, 4, '2026-03-01', 2200.00, 'Salary deposit', 4),
 (1, 3, 4, '2026-03-02', 150.00, 'Clothing store purchase', 4),
 (1, 3, 4, '2026-03-04', 12.50, 'Coffee shop', 4),
-(2, 1, 4, '2026-03-05', 300.00, 'Refund from retailer', 4);
+(2, 1, 4, '2026-03-05', 300.00, 'Refund from retailer', 4),
+
+-- Transacciones cuenta 5 (Kevin Nguyen)
+(2, 1, 5, '2026-01-01', 3000.00, 'Initial deposit', 5),
+(1, 3, 5, '2026-01-05', 150.00, 'Supermarket', 5),
+(1, 2, 5, '2026-01-10', 45.00, 'Spotify premium', 5),
+
+-- Transacciones cuenta 5 con tarjeta 6 (Kevin Nguyen)
+(2, 1, 6, '2026-01-02', 5000.00, 'Transfer received', 5),
+(1, 3, 6, '2026-01-08', 320.00, 'Electronics purchase', 5),
+
+-- Transacciones cuenta 6 (John Doe - account 6)
+(2, 1, 7, '2026-01-03', 2500.00, 'Salary deposit', 6),
+(1, 3, 7, '2026-01-07', 78.50, 'Pharmacy', 6),
+(1, 2, 7, '2026-01-12', 120.00, 'Insurance payment', 6),
+(1, 3, 7, '2026-01-14', 55.00, 'Restaurant', 6),
+
+-- Transacciones cuenta 7 (Michael Roberts - account 7)
+(2, 1, 8, '2026-01-05', 1800.00, 'Freelance income', 7),
+(1, 3, 8, '2026-01-09', 95.00, 'Online shopping', 7),
+
+-- Transacciones cuenta 8 (Sandra Perez - account 8)
+(2, 1, 9, '2026-01-01', 800.00, 'Initial deposit', 8),
+(1, 3, 9, '2026-01-06', 25.00, 'Coffee shop', 8),
+(1, 2, 9, '2026-01-11', 35.00, 'Cloud storage', 8),
+
+-- Transacciones cuenta 9 (Kevin Nguyen - account 9)
+(2, 1, 10, '2026-01-02', 10000.00, 'Savings transfer', 9),
+(1, 3, 10, '2026-01-10', 450.00, 'Flight tickets', 9),
+(1, 3, 10, '2026-01-12', 200.00, 'Hotel booking', 9),
+
+-- Transacciones cuenta 10 (John Doe - account 10)
+(2, 1, 11, '2026-01-04', 4500.00, 'Salary deposit', 10),
+(1, 3, 11, '2026-01-08', 180.00, 'Groceries', 10),
+(1, 2, 11, '2026-01-13', 65.00, 'Mobile phone bill', 10),
+(1, 3, 11, '2026-01-15', 42.00, 'Pet supplies', 10),
+(2, 1, 11, '2026-01-20', 250.00, 'Cashback reward', 10),
+
+-- Transacciones cuenta 11 (Michael Roberts - account 11)
+(2, 1, 12, '2026-01-03', 6000.00, 'Investment return', 11),
+(1, 3, 12, '2026-01-06', 350.00, 'Appliance purchase', 11),
+(1, 2, 12, '2026-01-09', 99.99, 'Annual subscription', 11),
+(1, 3, 12, '2026-01-11', 28.50, 'Taxi ride', 11),
+
+-- Transacciones cuenta 12 (Sandra Perez - account 12)
+(2, 1, 13, '2026-01-02', 2800.00, 'Contract payment', 12),
+(1, 3, 13, '2026-01-05', 125.00, 'Medical checkup', 12),
+(1, 3, 13, '2026-01-08', 67.30, 'Supermarket', 12),
+(1, 2, 13, '2026-01-12', 49.99, 'Magazine subscription', 12),
+
+-- Más transacciones con tarjeta 14 (Sandra Perez - cuenta 12)
+(1, 3, 14, '2026-01-04', 89.00, 'Online course', 12),
+(1, 3, 14, '2026-01-07', 42.50, 'Hair salon', 12),
+(2, 1, 14, '2026-01-14', 150.00, 'Refund', 12);

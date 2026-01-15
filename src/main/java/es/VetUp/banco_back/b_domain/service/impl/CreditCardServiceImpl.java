@@ -38,4 +38,9 @@ public class CreditCardServiceImpl implements CreditCardService {
     public boolean isExpired(Long sourceCardId) {
         return creditCardRepository.isExpired(sourceCardId);
     }
+
+    @Override
+    public List<CreditCard> getCardsByAccountId(Long accountId) {
+        return creditCardRepository.findByAccountId(accountId);
+    }
 }

@@ -11,4 +11,5 @@ public interface CreditCardJpaDao {
     List<CreditCardJpaEntity> findAllByAccountId(Long accountId);
     Boolean validateCreditCard(CreditCardJpaEntity creditCardJpaEntity);
     Boolean isExpired(Long sourceCardId);
+    List<CreditCardJpaEntity> findByAccountId(Long accountId);
 }

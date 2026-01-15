@@ -71,7 +71,19 @@ public class CreditCardJpaDaoImpl implements CreditCardJpaDao {
                     .getSingleResult();
             return expirationDate != null && expirationDate.isBefore(LocalDate.now());
         } catch (Exception e) {
-            return true; // Si no se encuentra, consideramos que está expirada
+            return true;
+        }
+    }
+
+    @Override
+    public List<CreditCardJpaEntity> findByAccountId(Long accountId) {
+        String sql = "SELECT c FROM CreditCardJpaEntity c WHERE c.bankAccount.accountId = :accountId";
+        try {
+            return entityManager.createQuery(sql, CreditCardJpaEntity.class)
+                    .setParameter("accountId", accountId)
+                    .getResultList();
+        } catch (Exception e) {
+            return List.of();
         }
     }
 }

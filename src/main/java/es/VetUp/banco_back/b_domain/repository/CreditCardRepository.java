@@ -11,4 +11,5 @@ public interface CreditCardRepository {
     List<CreditCard> findAllByAccountId(Long accountId);
     Boolean validateCard(CreditCard creditCard);
     Boolean isExpired(Long sourceCardId);
+    List<CreditCard> findByAccountId(Long accountId);
 }

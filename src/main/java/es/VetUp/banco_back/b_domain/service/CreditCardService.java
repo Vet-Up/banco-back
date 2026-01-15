@@ -11,8 +11,5 @@ public interface CreditCardService {
     List<CreditCard> getAllCreditCardsByUser(Long userId);
     boolean validateCreditCardDetails(CreditCard creditCard);
     boolean isExpired(Long sourceCardId);
-
-
-
-
+    List<CreditCard> getCardsByAccountId(Long accountId);
 }

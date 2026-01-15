@@ -1,9 +1,13 @@
 package es.VetUp.banco_back.c_persistence;
 
+import es.VetUp.banco_back.c_persistence.dao.jpa.BankAccountJpaDao;
 import es.VetUp.banco_back.c_persistence.dao.jpa.BankTransactionJpaDao;
 import es.VetUp.banco_back.c_persistence.dao.jpa.CreditCardJpaDao;
+import es.VetUp.banco_back.c_persistence.dao.jpa.UserJpaDao;
+import es.VetUp.banco_back.c_persistence.dao.jpa.impl.BankAccountJpaDaoImpl;
 import es.VetUp.banco_back.c_persistence.dao.jpa.impl.BankTransactionJpaDaoImpl;
 import es.VetUp.banco_back.c_persistence.dao.jpa.impl.CreditCardJpaDaoImpl;
+import es.VetUp.banco_back.c_persistence.dao.jpa.impl.UserJpaDaoImpl;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +26,16 @@ public class TestConfig {
     @Bean
     public CreditCardJpaDao creditCardJpaDao() {
         return new CreditCardJpaDaoImpl();
+    }
+
+    @Bean
+    public BankAccountJpaDao bankAccountJpaDao() {
+        return new BankAccountJpaDaoImpl();
+    }
+
+    @Bean
+    public UserJpaDao userJpaDao() {
+        return new UserJpaDaoImpl();
     }
 
 }

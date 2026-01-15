@@ -1,6 +1,7 @@
 package es.VetUp.banco_back.a_presentation;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import es.VetUp.banco_back.b_domain.service.BankAccountService;
 import es.VetUp.banco_back.b_domain.service.CardPaymentService;
 import es.VetUp.banco_back.b_domain.service.JwtService;
 import es.VetUp.banco_back.b_domain.service.dto.CardPaymentRequest;
@@ -31,6 +32,9 @@ class BankAccountControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockitoBean
+    private BankAccountService bankAccountService;
 
     @MockitoBean
     private CardPaymentService cardPaymentService;

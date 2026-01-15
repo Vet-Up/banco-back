@@ -1,7 +1,6 @@
 package es.VetUp.banco_back.c_persistence.repository.mapper;
 
 import es.VetUp.banco_back.b_domain.model.BankAccount;
-import es.VetUp.banco_back.b_domain.repository.entity.BankAccountEntity;
 import es.VetUp.banco_back.c_persistence.dao.jpa.entity.BankAccountJpaEntity;
 import es.VetUp.banco_back.c_persistence.dao.jpa.entity.UserJpaEntity;
 import org.junit.jupiter.api.DisplayName;
@@ -20,37 +19,6 @@ class BankAccountPersistenceMapperTest {
         UserJpaEntity user = new UserJpaEntity();
         user.setUserId(userId);
         return user;
-    }
-
-    @Nested
-    class FromBankAccountJpaEntityToBankAccountEntityTests {
-
-        @Test
-        @DisplayName("should map JpaEntity to Entity correctly")
-        void testMapping() {
-            BankAccountJpaEntity jpaEntity = new BankAccountJpaEntity();
-            jpaEntity.setAccountId(1L);
-            jpaEntity.setIban("ES1234567890123456789012");
-            jpaEntity.setBalance(new BigDecimal("1000.00"));
-            jpaEntity.setUser(createUserWithId(100L));
-
-            BankAccountEntity result = mapper.fromBankAccountJpaEntityToBankAccountEntity(jpaEntity);
-
-            assertAll("result",
-                    () -> assertEquals(1L, result.bankAccountId()),
-                    () -> assertEquals("ES1234567890123456789012", result.iban()),
-                    () -> assertEquals(new BigDecimal("1000.00"), result.balance()),
-                    () -> assertEquals(100L, result.userId())
-            );
-        }
-
-        @Test
-        @DisplayName("should return null when input is null")
-        void testNullInput() {
-            BankAccountEntity result = mapper.fromBankAccountJpaEntityToBankAccountEntity(null);
-
-            assertNull(result);
-        }
     }
 
     @Nested
@@ -119,46 +87,6 @@ class BankAccountPersistenceMapperTest {
         @DisplayName("should return null when input is null")
         void testNullInput() {
             BankAccountJpaEntity result = mapper.fromBankAccountToBankAccountJpaEntity(null);
-
-            assertNull(result);
-        }
-    }
-
-    @Nested
-    class FromBankAccountEntityToBankAccountJpaEntityTests {
-
-        @Test
-        @DisplayName("should map Entity to JpaEntity correctly")
-        void testMapping() {
-            BankAccountEntity entity = new BankAccountEntity(1L, "ES1234567890123456789012", new BigDecimal("4000.00"), 400L);
-
-            BankAccountJpaEntity result = mapper.fromBankAccountEntityToBankAccountJpaEntity(entity);
-
-            assertAll("result",
-                    () -> assertEquals(1L, result.getAccountId()),
-                    () -> assertEquals("ES1234567890123456789012", result.getIban()),
-                    () -> assertEquals(new BigDecimal("4000.00"), result.getBalance()),
-                    () -> assertEquals(400L, result.getUser())
-            );
-        }
-
-        @Test
-        @DisplayName("should handle null userId")
-        void testNullUserId() {
-            BankAccountEntity entity = new BankAccountEntity(1L, "ES1234567890123456789012", new BigDecimal("4000.00"), null);
-
-            BankAccountJpaEntity result = mapper.fromBankAccountEntityToBankAccountJpaEntity(entity);
-
-            assertAll("result",
-                    () -> assertEquals(1L, result.getAccountId()),
-                    () -> assertNull(result.getUser())
-            );
-        }
-
-        @Test
-        @DisplayName("should return null when input is null")
-        void testNullInput() {
-            BankAccountJpaEntity result = mapper.fromBankAccountEntityToBankAccountJpaEntity(null);
 
             assertNull(result);
         }

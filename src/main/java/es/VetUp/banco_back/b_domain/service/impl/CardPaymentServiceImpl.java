@@ -16,6 +16,7 @@ import es.VetUp.banco_back.b_domain.service.dto.smallDto.Pay;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 import java.util.regex.Pattern;
 
@@ -178,7 +179,7 @@ public class CardPaymentServiceImpl implements CardPaymentService {
                 BankTransactionType.Debit,
                 OriginBankingMovement.BankCard,
                 creditCard,
-                LocalDate.now(),
+                LocalDateTime.now(),
                 amount,
                 payment.concept(),
                 updatedSourceAccount
@@ -191,7 +192,7 @@ public class CardPaymentServiceImpl implements CardPaymentService {
                 BankTransactionType.Credit,
                 OriginBankingMovement.BankCard,
                 creditCard,
-                LocalDate.now(),
+                LocalDateTime.now(),
                 amount,
                 payment.concept(),
                 updatedDestinationAccount

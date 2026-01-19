@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -54,7 +55,7 @@ class BankTransactionJpaDaoImplTest {
         entityManager.flush();
 
         BankTransactionJpaEntity entity = new BankTransactionJpaEntity();
-        entity.setDate(LocalDate.of(2026, 1, 15));
+        entity.setDate(LocalDateTime.of(2026, 1, 15, 10, 30, 0));
         entity.setAmount(new BigDecimal("150.50"));
         entity.setDescription("Test transaction");
         entity.setTransactionTypeId(2L);
@@ -96,7 +97,7 @@ class BankTransactionJpaDaoImplTest {
         entityManager.flush();
 
         BankTransactionJpaEntity entity = new BankTransactionJpaEntity();
-        entity.setDate(LocalDate.of(2026, 1, 15));
+        entity.setDate(LocalDateTime.of(2026, 1, 15, 11, 0, 0));
         entity.setAmount(new BigDecimal("150.50"));
         entity.setDescription("Account transaction");
         entity.setTransactionTypeId(2L);
@@ -149,7 +150,7 @@ class BankTransactionJpaDaoImplTest {
         entityManager.flush();
 
         BankTransactionJpaEntity entity = new BankTransactionJpaEntity();
-        entity.setDate(LocalDate.of(2026, 1, 15));
+        entity.setDate(LocalDateTime.of(2026, 1, 15, 12, 0, 0));
         entity.setAmount(new BigDecimal("75.25"));
         entity.setDescription("Card transaction");
         entity.setTransactionTypeId(1L);
@@ -203,7 +204,7 @@ class BankTransactionJpaDaoImplTest {
         entityManager.flush();
 
         BankTransactionJpaEntity entity = new BankTransactionJpaEntity();
-        entity.setDate(LocalDate.of(2026, 1, 15));
+        entity.setDate(LocalDateTime.of(2026, 1, 15, 13, 0, 0));
         entity.setAmount(new BigDecimal("100.00"));
         entity.setDescription("Date range transaction");
         entity.setTransactionTypeId(2L);
@@ -251,7 +252,7 @@ class BankTransactionJpaDaoImplTest {
         entityManager.flush();
 
         BankTransactionJpaEntity entity = new BankTransactionJpaEntity();
-        entity.setDate(LocalDate.of(2026, 1, 15));
+        entity.setDate(LocalDateTime.of(2026, 1, 15, 14, 0, 0));
         entity.setAmount(new BigDecimal("200.00"));
         entity.setDescription("Find by ID transaction");
         entity.setTransactionTypeId(2L);
@@ -293,7 +294,7 @@ class BankTransactionJpaDaoImplTest {
         entityManager.flush();
 
         BankTransactionJpaEntity entity = new BankTransactionJpaEntity();
-        entity.setDate(LocalDate.of(2026, 1, 20));
+        entity.setDate(LocalDateTime.of(2026, 1, 20, 9, 0, 0));
         entity.setAmount(new BigDecimal("300.00"));
         entity.setDescription("New transaction");
         entity.setTransactionTypeId(2L);
@@ -332,7 +333,7 @@ class BankTransactionJpaDaoImplTest {
         entityManager.flush();
 
         BankTransactionJpaEntity entity = new BankTransactionJpaEntity();
-        entity.setDate(LocalDate.of(2026, 1, 15));
+        entity.setDate(LocalDateTime.of(2026, 1, 15, 15, 0, 0));
         entity.setAmount(new BigDecimal("150.00"));
         entity.setDescription("Original description");
         entity.setTransactionTypeId(2L);

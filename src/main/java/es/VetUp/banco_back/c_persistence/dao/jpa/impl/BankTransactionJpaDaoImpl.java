@@ -29,7 +29,7 @@ public class BankTransactionJpaDaoImpl implements BankTransactionJpaDao {
 
     @Override
     public List<BankTransactionJpaEntity> findAllTransactionsByAccountId(Long accountId) {
-        String sql = "SELECT m FROM BankTransactionJpaEntity m WHERE m.bankAccount.accountId = :bankAccountId ORDER BY m.id";
+        String sql = "SELECT m FROM BankTransactionJpaEntity m WHERE m.bankAccount.accountId = :bankAccountId ORDER BY m.date DESC";
         try {
             return entityManager.createQuery(sql, BankTransactionJpaEntity.class)
                     .setParameter("bankAccountId", accountId)
@@ -43,7 +43,7 @@ public class BankTransactionJpaDaoImpl implements BankTransactionJpaDao {
     @Override
     public List<BankTransactionJpaEntity> findAllByCardId(Long cardId) {
         String sql = "SELECT b FROM BankTransactionJpaEntity b " +
-                "WHERE b.creditCard.id = :cardId";
+                "WHERE b.creditCard.id = :cardId ORDER BY b.date DESC";
         try {
             return entityManager.createQuery(sql, BankTransactionJpaEntity.class)
                     .setParameter("cardId", cardId)

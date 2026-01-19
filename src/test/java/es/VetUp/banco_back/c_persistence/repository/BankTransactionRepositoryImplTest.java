@@ -6,6 +6,7 @@ import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,7 +57,7 @@ class BankTransactionRepositoryImplTest {
 
         transactionJpaEntity1 = new BankTransactionJpaEntity();
         transactionJpaEntity1.setTransactionId(1L);
-        transactionJpaEntity1.setDate(LocalDate.of(2026, 1, 15));
+        transactionJpaEntity1.setDate(LocalDateTime.of(2026, 1, 15, 10, 30, 0));
         transactionJpaEntity1.setAmount(new BigDecimal("150.50"));
         transactionJpaEntity1.setDescription("Salary deposit");
         transactionJpaEntity1.setTransactionTypeId(2L); // Credit
@@ -66,7 +67,7 @@ class BankTransactionRepositoryImplTest {
 
         transactionJpaEntity2 = new BankTransactionJpaEntity();
         transactionJpaEntity2.setTransactionId(2L);
-        transactionJpaEntity2.setDate(LocalDate.of(2026, 1, 10));
+        transactionJpaEntity2.setDate(LocalDateTime.of(2026, 1, 10, 14, 0, 0));
         transactionJpaEntity2.setAmount(new BigDecimal("75.25"));
         transactionJpaEntity2.setDescription("Online purchase");
         transactionJpaEntity2.setTransactionTypeId(1L); // Debit
@@ -265,7 +266,7 @@ class BankTransactionRepositoryImplTest {
                     BankTransactionType.Credit,
                     OriginBankingMovement.Transfer,
                     null,
-                    LocalDate.of(2026, 1, 15),
+                    LocalDateTime.of(2026, 1, 15, 10, 30, 0),
                     new BigDecimal("150.50"),
                     "Salary deposit",
                     null
@@ -287,7 +288,7 @@ class BankTransactionRepositoryImplTest {
         void testSaveNewTransaction() {
             BankTransactionJpaEntity savedTransactionJpaEntity = new BankTransactionJpaEntity();
             savedTransactionJpaEntity.setTransactionId(3L);
-            savedTransactionJpaEntity.setDate(LocalDate.of(2026, 1, 20));
+            savedTransactionJpaEntity.setDate(LocalDateTime.of(2026, 1, 20, 9, 0, 0));
             savedTransactionJpaEntity.setAmount(new BigDecimal("200.00"));
             savedTransactionJpaEntity.setDescription("New transaction");
             savedTransactionJpaEntity.setTransactionTypeId(2L);
@@ -303,7 +304,7 @@ class BankTransactionRepositoryImplTest {
                     BankTransactionType.Credit,
                     OriginBankingMovement.Transfer,
                     null,
-                    LocalDate.of(2026, 1, 20),
+                    LocalDateTime.of(2026, 1, 20, 9, 0, 0),
                     new BigDecimal("200.00"),
                     "New transaction",
                     null
@@ -316,7 +317,7 @@ class BankTransactionRepositoryImplTest {
                     () -> assertEquals(3L, actual.getTransactionId()),
                     () -> assertEquals(BankTransactionType.Credit, actual.getType()),
                     () -> assertEquals(OriginBankingMovement.Transfer, actual.getOrigin()),
-                    () -> assertEquals(LocalDate.of(2026, 1, 20), actual.getDate()),
+                    () -> assertEquals(LocalDateTime.of(2026, 1, 20, 9, 0, 0), actual.getDate()),
                     () -> assertEquals(0, new BigDecimal("200.00").compareTo(actual.getAmount())),
                     () -> assertEquals("New transaction", actual.getDescription()));
         }

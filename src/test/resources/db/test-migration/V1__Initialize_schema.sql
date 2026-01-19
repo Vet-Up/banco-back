@@ -50,7 +50,7 @@ CREATE TABLE BankTransaction (
                                  transaction_type_id BIGINT NOT NULL,
                                  transaction_origin_id BIGINT NOT NULL,
                                  source_card_id BIGINT,
-                                 transaction_date DATE NOT NULL,
+                                 transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
                                  amount DECIMAL(15,2) NOT NULL,
                                  description VARCHAR(255),
                                  account_id BIGINT NOT NULL,

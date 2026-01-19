@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import es.VetUp.banco_back.b_domain.model.BankAccount;
 import es.VetUp.banco_back.b_domain.model.BankTransaction;
@@ -37,7 +38,7 @@ class BankTransactionPersistenceMapperTest {
 
         BankTransactionJpaEntity jpaEntity = new BankTransactionJpaEntity();
         jpaEntity.setTransactionId(1L);
-        jpaEntity.setDate(LocalDate.of(2026, 1, 15));
+        jpaEntity.setDate(LocalDateTime.of(2026, 1, 15, 10, 30, 0));
         jpaEntity.setAmount(new BigDecimal("150.50"));
         jpaEntity.setDescription("Salary deposit");
         jpaEntity.setTransactionTypeId(2L); // Credit
@@ -71,7 +72,7 @@ class BankTransactionPersistenceMapperTest {
 
         BankTransactionJpaEntity jpaEntity = new BankTransactionJpaEntity();
         jpaEntity.setTransactionId(2L);
-        jpaEntity.setDate(LocalDate.of(2026, 1, 10));
+        jpaEntity.setDate(LocalDateTime.of(2026, 1, 10, 14, 0, 0));
         jpaEntity.setAmount(new BigDecimal("75.25"));
         jpaEntity.setDescription("Online purchase");
         jpaEntity.setTransactionTypeId(1L); // Debit
@@ -114,7 +115,7 @@ class BankTransactionPersistenceMapperTest {
                 BankTransactionType.Credit,
                 OriginBankingMovement.Transfer,
                 creditCard,
-                LocalDate.of(2026, 1, 15),
+                LocalDateTime.of(2026, 1, 15, 10, 30, 0),
                 new BigDecimal("150.50"),
                 "Salary deposit",
                 bankAccount
@@ -146,7 +147,7 @@ class BankTransactionPersistenceMapperTest {
                 BankTransactionType.Debit,
                 OriginBankingMovement.DirectDebit,
                 null,
-                LocalDate.of(2026, 1, 10),
+                LocalDateTime.of(2026, 1, 10, 14, 0, 0),
                 new BigDecimal("99.99"),
                 "Monthly subscription",
                 bankAccount

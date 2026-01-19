@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,7 +40,7 @@ class BankTransactionServiceImplTest {
                 BankTransactionType.Credit,
                 OriginBankingMovement.Transfer,
                 creditCard,
-                LocalDate.of(2026, 1, 15),
+                LocalDateTime.of(2026, 1, 15, 10, 30, 0),
                 new BigDecimal("150.50"),
                 "Test transaction",
                 bankAccount
@@ -251,7 +252,7 @@ class BankTransactionServiceImplTest {
                     BankTransactionType.Credit,
                     OriginBankingMovement.Transfer,
                     creditCard,
-                    LocalDate.of(2026, 1, 15),
+                    LocalDateTime.of(2026, 1, 15, 10, 30, 0),
                     new BigDecimal("150.50"),
                     "Salary deposit",
                     bankAccount
@@ -262,7 +263,7 @@ class BankTransactionServiceImplTest {
                     BankTransactionType.Credit,
                     OriginBankingMovement.Transfer,
                     creditCard,
-                    LocalDate.of(2026, 1, 15),
+                    LocalDateTime.of(2026, 1, 15, 10, 30, 0),
                     new BigDecimal("150.50"),
                     "Salary deposit",
                     bankAccount
@@ -292,7 +293,7 @@ class BankTransactionServiceImplTest {
                     BankTransactionType.Debit,
                     OriginBankingMovement.BankCard,
                     creditCard,
-                    LocalDate.of(2026, 1, 10),
+                    LocalDateTime.of(2026, 1, 10, 14, 0, 0),
                     new BigDecimal("75.25"),
                     "Online purchase",
                     bankAccount
@@ -303,7 +304,7 @@ class BankTransactionServiceImplTest {
                     BankTransactionType.Debit,
                     OriginBankingMovement.BankCard,
                     creditCard,
-                    LocalDate.of(2026, 1, 10),
+                    LocalDateTime.of(2026, 1, 10, 14, 0, 0),
                     new BigDecimal("75.25"),
                     "Online purchase",
                     bankAccount

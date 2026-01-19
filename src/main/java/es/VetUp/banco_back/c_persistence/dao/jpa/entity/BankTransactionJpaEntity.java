@@ -1,13 +1,10 @@
 package es.VetUp.banco_back.c_persistence.dao.jpa.entity;
 
-import es.VetUp.banco_back.b_domain.model.CreditCard;
-import es.VetUp.banco_back.b_domain.model.enums.BankTransactionType;
-import es.VetUp.banco_back.b_domain.model.enums.OriginBankingMovement;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "BankTransaction")
@@ -18,8 +15,8 @@ public class BankTransactionJpaEntity implements Serializable {
     @Column(name = "transaction_id")
     private Long transactionId;
 
-    @Column(name = "transaction_date")
-    private LocalDate date;
+    @Column(name = "transaction_date", insertable = false, updatable = false)
+    private LocalDateTime date;
 
     @Column(name = "amount")
     private BigDecimal amount;
@@ -45,7 +42,7 @@ public class BankTransactionJpaEntity implements Serializable {
 
     }
 
-    public BankTransactionJpaEntity(Long transactionId, LocalDate date, BigDecimal amount, String description, Long transactionTypeId, Long transactionOriginId, CreditCardJpaEntity creditCard, BankAccountJpaEntity bankAccount) {
+    public BankTransactionJpaEntity(Long transactionId, LocalDateTime date, BigDecimal amount, String description, Long transactionTypeId, Long transactionOriginId, CreditCardJpaEntity creditCard, BankAccountJpaEntity bankAccount) {
         this.transactionId = transactionId;
         this.date = date;
         this.amount = amount;
@@ -64,11 +61,11 @@ public class BankTransactionJpaEntity implements Serializable {
         this.transactionId = transactionId;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 

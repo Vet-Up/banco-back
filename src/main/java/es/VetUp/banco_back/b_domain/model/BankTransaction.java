@@ -4,7 +4,7 @@ import es.VetUp.banco_back.b_domain.model.enums.BankTransactionType;
 import es.VetUp.banco_back.b_domain.model.enums.OriginBankingMovement;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class BankTransaction {
@@ -12,13 +12,13 @@ public class BankTransaction {
     private final BankTransactionType type;
     private final OriginBankingMovement origin;
     private final CreditCard creditCard;
-    private final LocalDate date;
+    private final LocalDateTime date;
     private final BigDecimal amount;
     private final String description;
     private final BankAccount bankAccount;
 
 
-    public BankTransaction(Long transactionId, BankTransactionType type, OriginBankingMovement origin, CreditCard creditCard, LocalDate date, BigDecimal amount, String description, BankAccount bankAccount) {
+    public BankTransaction(Long transactionId, BankTransactionType type, OriginBankingMovement origin, CreditCard creditCard, LocalDateTime date, BigDecimal amount, String description, BankAccount bankAccount) {
         this.transactionId = transactionId;
         this.type = type;
         this.origin = origin;
@@ -45,7 +45,7 @@ public class BankTransaction {
         return creditCard;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 

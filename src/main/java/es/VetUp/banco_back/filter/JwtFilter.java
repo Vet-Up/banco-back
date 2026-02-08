@@ -23,8 +23,7 @@ public class JwtFilter implements Filter {
     public void doFilter(
             ServletRequest servletRequest,
             ServletResponse servletResponse,
-            FilterChain filterChain
-    ) throws IOException, ServletException {
+            FilterChain filterChain) throws IOException, ServletException {
 
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
@@ -33,7 +32,10 @@ public class JwtFilter implements Filter {
         String method = request.getMethod();
 
         // Permitir preflight CORS y auth endpoints
-        if ("OPTIONS".equalsIgnoreCase(method) || path.startsWith("/api/auth")) {
+        // Permitir preflight CORS, auth endpoints y pagos
+        if ("OPTIONS".equalsIgnoreCase(method) || path.startsWith("/api/auth")
+                || path.equals("/api/payments/card-payment")
+                || path.equals("/api/bank-accounts/pago_tarjeta")) {
             filterChain.doFilter(servletRequest, servletResponse);
             return;
         }

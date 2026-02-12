@@ -38,20 +38,20 @@ INSERT INTO BankAccount (balance, iban, user_id) VALUES
 
 -- Credit Cards
 INSERT INTO CreditCard (card_number, expiration_date, cvc, full_name, account_id) VALUES
-('4111111111111111', '2027-12-31', '123', 'John Doe Smith', 1),
-('4111111111111121', '2028-11-30', '123', 'John Doe Smith', 1),
-('5500000000000004', '2028-05-31', '456', 'Michael Roberts Johnson', 3),
-('340000000000009', '2027-09-30', '789', 'Sandra Perez Lopez', 4),
-('30000000000004', '2029-03-31', '321', 'Kevin Nguyen Tran', 5),
-('30000000000005', '2029-03-31', '321', 'Kevin Nguyen Tran', 5),
-('4532015112830366', '2028-08-31', '542', 'John Doe Smith', 6),
-('4716182333661786', '2027-11-30', '887', 'Michael Roberts Johnson', 7),
-('5425233430109903', '2028-04-30', '234', 'Sandra Perez Lopez', 8),
-('4929598581234567', '2029-01-31', '156', 'Kevin Nguyen Tran', 9),
-('4539578763621486', '2027-07-31', '923', 'John Doe Smith', 10),
-('4916338506082832', '2028-10-31', '445', 'Michael Roberts Johnson', 11),
-('4024007198642889', '2029-06-30', '712', 'Sandra Perez Lopez', 12),
-('4556737586899855', '2026-03-31', '331', 'Sandra Perez Lopez', 12);
+('4111111111111111', '2027-12-01', '123', 'John Doe Smith', 1),
+('4111111111111121', '2028-11-01', '123', 'John Doe Smith', 1),
+('5500000000000004', '2028-05-01', '456', 'Michael Roberts Johnson', 3),
+('340000000000009', '2027-09-01', '789', 'Sandra Perez Lopez', 4),
+('30000000000004', '2029-03-01', '321', 'Kevin Nguyen Tran', 5),
+('30000000000005', '2029-03-01', '321', 'Kevin Nguyen Tran', 5),
+('4532015112830366', '2028-08-01', '542', 'John Doe Smith', 6),
+('4716182333661786', '2027-11-01', '887', 'Michael Roberts Johnson', 7),
+('5425233430109903', '2028-04-01', '234', 'Sandra Perez Lopez', 8),
+('4929598581234567', '2029-01-01', '156', 'Kevin Nguyen Tran', 9),
+('4539578763621486', '2027-07-01', '923', 'John Doe Smith', 10),
+('4916338506082832', '2028-10-01', '445', 'Michael Roberts Johnson', 11),
+('4024007198642889', '2029-06-01', '712', 'Sandra Perez Lopez', 12),
+('4556737586899855', '2026-03-01', '331', 'Sandra Perez Lopez', 12);
 
 -- Bank Transactions
 INSERT INTO BankTransaction (transaction_type_id, transaction_origin_id, source_card_id, transaction_date, amount, description, account_id) VALUES

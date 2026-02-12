@@ -15,7 +15,7 @@ public class BankTransactionJpaEntity implements Serializable {
     @Column(name = "transaction_id")
     private Long transactionId;
 
-    @Column(name = "transaction_date", insertable = false, updatable = false)
+    @Column(name = "transaction_date")
     private LocalDateTime date;
 
     @Column(name = "amount")

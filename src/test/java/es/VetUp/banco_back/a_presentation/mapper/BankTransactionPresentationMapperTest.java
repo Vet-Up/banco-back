@@ -3,7 +3,7 @@ package es.VetUp.banco_back.a_presentation.mapper;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ class BankTransactionPresentationMapperTest {
                 BankTransactionType.Debit,
                 OriginBankingMovement.BankCard,
                 creditCard,
-                LocalDate.of(2026, 1, 7),
+                LocalDateTime.of(2026, 1, 7, 10, 0),
                 new BigDecimal("50.00"),
                 "Grocery store purchase",
                 bankAccount);
@@ -88,7 +88,7 @@ class BankTransactionPresentationMapperTest {
                 BankTransactionType.Credit,
                 OriginBankingMovement.Transfer,
                 creditCard,
-                LocalDate.of(2026, 1, 6),
+                LocalDateTime.of(2026, 1, 6, 15, 30),
                 new BigDecimal("200.00"),
                 "Salary deposit",
                 bankAccount);

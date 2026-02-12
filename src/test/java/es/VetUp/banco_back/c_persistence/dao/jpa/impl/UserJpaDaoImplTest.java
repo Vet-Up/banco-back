@@ -29,7 +29,7 @@ class UserJpaDaoImplTest {
     private UserJpaEntity createAndPersistUser(String suffix, String username, String dni, String apiKey) {
         UserJpaEntity user = new UserJpaEntity();
         user.setUsername(username);
-        user.setPassword("password123");
+        user.setPassword("password123_" + suffix);
         user.setName("Test" + suffix);
         user.setFirstSurname("User");
         user.setSecondSurname("UD");

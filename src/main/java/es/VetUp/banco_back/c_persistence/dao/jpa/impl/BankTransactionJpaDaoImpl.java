@@ -57,13 +57,13 @@ public class BankTransactionJpaDaoImpl implements BankTransactionJpaDao {
     @Override
     public List<BankTransactionJpaEntity> findAllByCardIdAndDateBetween(Long cardId, LocalDate startDate, LocalDate endDate) {
         String sql = "SELECT b FROM BankTransactionJpaEntity b " +
-                "WHERE b.creditCard.id = :cardId " +
-                "AND b.date BETWEEN :startDate AND :endDate";
+                "WHERE b.creditCard.sourceCardId = :cardId " +
+                "AND b.date >= :startDateTime AND b.date < :endDateTime";
         try {
             return entityManager.createQuery(sql, BankTransactionJpaEntity.class)
                     .setParameter("cardId", cardId)
-                    .setParameter("startDate", startDate)
-                    .setParameter("endDate", endDate)
+                    .setParameter("startDateTime", startDate.atStartOfDay())
+                    .setParameter("endDateTime", endDate.plusDays(1).atStartOfDay())
                     .getResultList();
         } catch (Exception e) {
             e.printStackTrace();

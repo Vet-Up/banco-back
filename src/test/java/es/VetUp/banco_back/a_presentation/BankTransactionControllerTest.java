@@ -18,7 +18,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,7 +65,7 @@ class BankTransactionControllerTest {
                 BankTransactionType.Debit,
                 OriginBankingMovement.BankCard,
                 creditCard,
-                LocalDate.of(2026, 1, 7),
+                LocalDateTime.of(2026, 1, 7, 10, 0),
                 new BigDecimal("50.00"),
                 "Grocery store purchase",
                 bankAccount);
@@ -75,7 +75,7 @@ class BankTransactionControllerTest {
                 BankTransactionType.Credit,
                 OriginBankingMovement.Transfer,
                 creditCard,
-                LocalDate.of(2026, 1, 6),
+                LocalDateTime.of(2026, 1, 6, 15, 30),
                 new BigDecimal("200.00"),
                 "Salary deposit",
                 bankAccount);

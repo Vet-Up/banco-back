@@ -90,7 +90,7 @@ class BankTransactionRepositoryImplTest {
                     () -> assertEquals(1L, actual.get().getTransactionId()),
                     () -> assertEquals(BankTransactionType.Credit, actual.get().getType()),
                     () -> assertEquals(OriginBankingMovement.Transfer, actual.get().getOrigin()),
-                    () -> assertEquals(LocalDate.of(2026, 1, 15), actual.get().getDate()),
+                    () -> assertEquals(LocalDateTime.of(2026, 1, 15, 10, 30, 0), actual.get().getDate()),
                     () -> assertEquals(0, new BigDecimal("150.50").compareTo(actual.get().getAmount())),
                     () -> assertEquals("Salary deposit", actual.get().getDescription()),
                     () -> assertNotNull(actual.get().getBankAccount()));
@@ -229,8 +229,8 @@ class BankTransactionRepositoryImplTest {
                     () -> assertEquals(2, actual.size()),
                     () -> assertEquals(1L, actual.get(0).getTransactionId()),
                     () -> assertEquals(2L, actual.get(1).getTransactionId()),
-                    () -> assertEquals(LocalDate.of(2026, 1, 15), actual.get(0).getDate()),
-                    () -> assertEquals(LocalDate.of(2026, 1, 10), actual.get(1).getDate()));
+                    () -> assertEquals(LocalDateTime.of(2026, 1, 15, 10, 30, 0), actual.get(0).getDate()),
+                    () -> assertEquals(LocalDateTime.of(2026, 1, 10, 14, 0, 0), actual.get(1).getDate()));
         }
 
         @Test

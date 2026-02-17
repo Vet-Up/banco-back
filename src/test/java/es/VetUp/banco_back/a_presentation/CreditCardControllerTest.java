@@ -1,6 +1,7 @@
 package es.VetUp.banco_back.a_presentation;
 
 import es.VetUp.banco_back.b_domain.model.CreditCard;
+import java.util.List;
 import es.VetUp.banco_back.b_domain.service.CreditCardService;
 import es.VetUp.banco_back.b_domain.service.JwtService;
 import org.junit.jupiter.api.BeforeEach;
@@ -67,6 +68,23 @@ class CreditCardControllerTest {
                     .andExpect(jsonPath("$.cvv").value("123"))
                     .andExpect(jsonPath("$.fullName").value("John Doe Smith"));
         }
+    }
 
+    @Nested
+    class GetByAccountIdTests {
+
+        @Test
+        @DisplayName("GET /api/credit-cards/by-account/{accountId} - Success")
+        void testGetCreditCardByAccountIdSuccess() throws Exception {
+            when(creditCardService.getCardsByAccountId(1L)).thenReturn(List.of(creditCard1, creditCard2));
+
+            mockMvc.perform(get("/api/credit-cards/by-account/{accountId}", 1L))
+                    .andExpect(status().isOk())
+                    .andExpect(jsonPath("$.length()").value(2))
+                    .andExpect(jsonPath("$[0].creditCardId").value(1))
+                    .andExpect(jsonPath("$[0].cardNumber").value("4111111111111111"))
+                    .andExpect(jsonPath("$[1].creditCardId").value(2))
+                    .andExpect(jsonPath("$[1].cardNumber").value("5500000000000004"));
+        }
     }
 }

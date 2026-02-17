@@ -205,4 +205,40 @@ class CreditCardRepositoryImplTest {
             assertFalse(actual);
         }
     }
+
+    @Nested
+    class FindByAccountId {
+        @Test
+        @DisplayName("findByAccountId should return credit cards for given account")
+        void testFindByAccountId() {
+            Long accountId = 1L;
+            List<CreditCardJpaEntity> expectedList = List.of(creditCardJpaEntity1, creditCardJpaEntity2);
+
+            when(creditCardJpaDao.findByAccountId(accountId)).thenReturn(expectedList);
+
+            List<CreditCard> actual = creditCardRepositoryImpl.findByAccountId(accountId);
+
+            assertAll(
+                    () -> assertEquals(2, actual.size()),
+                    () -> assertEquals(1L, actual.get(0).getSourceCardId()),
+                    () -> assertEquals(2L, actual.get(1).getSourceCardId()),
+                    () -> assertEquals("4111111111111111", actual.get(0).getCardNumber()),
+                    () -> assertEquals("5500000000000004", actual.get(1).getCardNumber()));
+        }
+
+        @Test
+        @DisplayName("findByAccountId should return empty list when no cards found")
+        void testFindByAccountIdEmpty() {
+            Long accountId = 99L;
+            List<CreditCardJpaEntity> expectedList = List.of();
+
+            when(creditCardJpaDao.findByAccountId(accountId)).thenReturn(expectedList);
+
+            List<CreditCard> actual = creditCardRepositoryImpl.findByAccountId(accountId);
+
+            assertAll(
+                    () -> assertEquals(0, actual.size()),
+                    () -> assertTrue(actual.isEmpty()));
+        }
+    }
 }

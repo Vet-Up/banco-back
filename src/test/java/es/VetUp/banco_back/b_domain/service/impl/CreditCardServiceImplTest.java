@@ -32,8 +32,7 @@ class CreditCardServiceImplTest {
                 "2027-12-31",
                 "123",
                 "John Doe Smith",
-                accountId
-        );
+                accountId);
     }
 
     @Nested
@@ -193,6 +192,45 @@ class CreditCardServiceImplTest {
             boolean result = creditCardServiceImpl.isExpired(sourceCardId);
 
             assertFalse(result);
+        }
+    }
+
+    @Nested
+    class GetCardsByAccountIdTests {
+
+        @Test
+        @DisplayName("getCardsByAccountId should return list of credit cards")
+        void testGetCardsByAccountId() {
+            Long accountId = 1L;
+            CreditCard creditCard1 = createTestCreditCard(1L, accountId);
+            CreditCard creditCard2 = new CreditCard(2L, "5500000000000004", "2028-06-30", "456", "Jane Smith",
+                    accountId);
+
+            List<CreditCard> creditCards = List.of(creditCard1, creditCard2);
+
+            when(creditCardRepository.findByAccountId(accountId)).thenReturn(creditCards);
+
+            List<CreditCard> result = creditCardServiceImpl.getCardsByAccountId(accountId);
+
+            assertAll("result",
+                    () -> assertNotNull(result),
+                    () -> assertEquals(2, result.size()),
+                    () -> assertEquals(1L, result.get(0).getSourceCardId()),
+                    () -> assertEquals(2L, result.get(1).getSourceCardId()));
+        }
+
+        @Test
+        @DisplayName("getCardsByAccountId should return empty list when no cards found")
+        void testGetCardsByAccountIdEmpty() {
+            Long accountId = 99L;
+
+            when(creditCardRepository.findByAccountId(accountId)).thenReturn(List.of());
+
+            List<CreditCard> result = creditCardServiceImpl.getCardsByAccountId(accountId);
+
+            assertAll("result",
+                    () -> assertNotNull(result),
+                    () -> assertEquals(0, result.size()));
         }
     }
 }

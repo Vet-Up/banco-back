@@ -48,7 +48,7 @@ class BankTransactionJpaDaoImplTest {
 
         es.VetUp.banco_back.c_persistence.dao.jpa.entity.BankAccountJpaEntity bankAccount =
                 new es.VetUp.banco_back.c_persistence.dao.jpa.entity.BankAccountJpaEntity();
-        bankAccount.setIban("ES9121000418450200051332");
+        bankAccount.setIban("ES0000000000000000000001");
         bankAccount.setBalance(new BigDecimal("1000.00"));
         bankAccount.setUser(user);
         entityManager.persist(bankAccount);

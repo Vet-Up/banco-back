@@ -30,86 +30,102 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc(addFilters = false)
 class BankTransactionControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+        @Autowired
+        private MockMvc mockMvc;
 
-    @MockitoBean
-    private BankTransactionService bankTransactionService;
+        @MockitoBean
+        private BankTransactionService bankTransactionService;
 
-    @MockitoBean
-    private JwtService jwtService;
+        @MockitoBean
+        private JwtService jwtService;
 
-    private BankTransaction transaction1;
-    private BankTransaction transaction2;
-    private BankAccount bankAccount;
-    private CreditCard creditCard;
+        private BankTransaction transaction1;
+        private BankTransaction transaction2;
+        private BankAccount bankAccount;
+        private CreditCard creditCard;
 
-    @BeforeEach
-    void setUp() {
-        bankAccount = new BankAccount(
-                1L,
-                "ES7620770024003102575766",
-                new BigDecimal("1500.00"),
-                null);
+        @BeforeEach
+        void setUp() {
+                bankAccount = new BankAccount(
+                                1L,
+                                "ES7620770024003102575766",
+                                new BigDecimal("1500.00"),
+                                null);
 
-        creditCard = new CreditCard(
-                1L,
-                "4111111111111111",
-                "2027-12-31",
-                "123",
-                "John Doe Smith",
-                1L);
+                creditCard = new CreditCard(
+                                1L,
+                                "4111111111111111",
+                                "2027-12-31",
+                                "123",
+                                "John Doe Smith",
+                                1L);
 
-        transaction1 = new BankTransaction(
-                1L,
-                BankTransactionType.Debit,
-                OriginBankingMovement.BankCard,
-                creditCard,
-                LocalDateTime.of(2026, 1, 7, 10, 0),
-                new BigDecimal("50.00"),
-                "Grocery store purchase",
-                bankAccount);
+                transaction1 = new BankTransaction(
+                                1L,
+                                BankTransactionType.Debit,
+                                OriginBankingMovement.BankCard,
+                                creditCard,
+                                LocalDateTime.of(2026, 1, 7, 10, 0),
+                                new BigDecimal("50.00"),
+                                "Grocery store purchase",
+                                bankAccount);
 
-        transaction2 = new BankTransaction(
-                2L,
-                BankTransactionType.Credit,
-                OriginBankingMovement.Transfer,
-                creditCard,
-                LocalDateTime.of(2026, 1, 6, 15, 30),
-                new BigDecimal("200.00"),
-                "Salary deposit",
-                bankAccount);
-    }
-
-    @Nested
-    class GetByIdTests {
-        @Test
-        @DisplayName("GET /api/bank-transactions/{id} - Success")
-        void testGetBankTransactionByIdSuccess() throws Exception {
-            when(bankTransactionService.getTransactionById(1L)).thenReturn(Optional.of(transaction1));
-
-            mockMvc.perform(get("/api/bank-transactions/{id}", 1L))
-                    .andExpect(status().isOk())
-                    .andExpect(jsonPath("$.transactionId").value(1))
-                    .andExpect(jsonPath("$.transactionType").value("Debit"))
-                    .andExpect(jsonPath("$.originType").value("BankCard"))
-                    .andExpect(jsonPath("$.amount").value(50.00))
-                    .andExpect(jsonPath("$.description").value("Grocery store purchase"));
+                transaction2 = new BankTransaction(
+                                2L,
+                                BankTransactionType.Credit,
+                                OriginBankingMovement.Transfer,
+                                creditCard,
+                                LocalDateTime.of(2026, 1, 6, 15, 30),
+                                new BigDecimal("200.00"),
+                                "Salary deposit",
+                                bankAccount);
         }
-    }
 
-    @Test
-    @DisplayName("GET /api/bank-transactions/by-account/{accountId} - Success")
-    void testGetTransactionsByAccountIdSuccess() throws Exception {
-        when(bankTransactionService.getTransactionsByAccountId(1L)).thenReturn(List.of(transaction1, transaction2));
+        @Nested
+        class GetByIdTests {
+                @Test
+                @DisplayName("GET /api/bank-transactions/{id} - Success")
+                void testGetBankTransactionByIdSuccess() throws Exception {
+                        when(bankTransactionService.getTransactionById(1L)).thenReturn(Optional.of(transaction1));
 
-        mockMvc.perform(get("/api/bank-transactions/by-account/{accountId}", 1L))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2))
-                .andExpect(jsonPath("$[0].transactionId").value(1))
-                .andExpect(jsonPath("$[0].description").value("Grocery store purchase"))
-                .andExpect(jsonPath("$[1].transactionId").value(2))
-                .andExpect(jsonPath("$[1].description").value("Salary deposit"));
-    }
+                        mockMvc.perform(get("/api/bank-transactions/{id}", 1L))
+                                        .andExpect(status().isOk())
+                                        .andExpect(jsonPath("$.transactionId").value(1))
+                                        .andExpect(jsonPath("$.transactionType").value("Debit"))
+                                        .andExpect(jsonPath("$.originType").value("BankCard"))
+                                        .andExpect(jsonPath("$.amount").value(50.00))
+                                        .andExpect(jsonPath("$.description").value("Grocery store purchase"));
+                }
+        }
+
+        @Test
+        @DisplayName("GET /api/bank-transactions/by-account/{accountId} - Success")
+        void testGetTransactionsByAccountIdSuccess() throws Exception {
+                when(bankTransactionService.getTransactionsByAccountId(1L))
+                                .thenReturn(List.of(transaction1, transaction2));
+
+                mockMvc.perform(get("/api/bank-transactions/by-account/{accountId}", 1L))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.length()").value(2))
+                                .andExpect(jsonPath("$[0].transactionId").value(1))
+                                .andExpect(jsonPath("$[0].description").value("Grocery store purchase"))
+                                .andExpect(jsonPath("$[1].transactionId").value(2))
+                                .andExpect(jsonPath("$[1].description").value("Salary deposit"));
+        }
+
+        @Test
+        @DisplayName("GET /api/bank-transactions/by-card/{cardId} - Success")
+        void testGetTransactionsByCardIdSuccess() throws Exception {
+                when(bankTransactionService.getAllTransactionsByCardId(1L))
+                                .thenReturn(List.of(transaction1, transaction2));
+
+                mockMvc.perform(get("/api/bank-transactions/by-card/{cardId}", 1L))
+                                .andExpect(status().isOk())
+                                .andExpect(jsonPath("$.length()").value(2))
+                                .andExpect(jsonPath("$[0].transactionId").value(1))
+                                .andExpect(jsonPath("$[0].description").value("Grocery store purchase"))
+                                .andExpect(jsonPath("$[1].transactionId").value(2))
+                                .andExpect(jsonPath("$[1].description").value("Salary deposit"));
+        }
 
 }

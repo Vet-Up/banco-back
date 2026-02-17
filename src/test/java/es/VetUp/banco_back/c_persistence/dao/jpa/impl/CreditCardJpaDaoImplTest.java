@@ -324,4 +324,62 @@ class CreditCardJpaDaoImplTest {
         // Assert: should return true (considered expired if not found)
         assertTrue(result);
     }
+
+    @Test
+    void testFindByAccountId() {
+        // Arrange: persist user, bank account, and multiple credit cards
+        UserJpaEntity user = new UserJpaEntity();
+        user.setUsername("testuser_cc7");
+        user.setPassword("password123");
+        user.setName("Test");
+        user.setFirstSurname("User");
+        user.setSecondSurname("Seven");
+        user.setDni("CCTEST07G");
+        user.setApiKey("apikey_cc_7");
+        entityManager.persist(user);
+        entityManager.flush();
+
+        BankAccountJpaEntity bankAccount = new BankAccountJpaEntity();
+        bankAccount.setIban("ES0000000000000000000107");
+        bankAccount.setBalance(new BigDecimal("7000.00"));
+        bankAccount.setUser(user);
+        entityManager.persist(bankAccount);
+        entityManager.flush();
+
+        CreditCardJpaEntity creditCard1 = new CreditCardJpaEntity();
+        creditCard1.setCardNumber("4111111111110007");
+        creditCard1.setExpirationDate(LocalDate.of(2027, 12, 31));
+        creditCard1.setCvv("111");
+        creditCard1.setFullName("Account Holder Seven");
+        creditCard1.setBankAccount(bankAccount);
+        entityManager.persist(creditCard1);
+
+        CreditCardJpaEntity creditCard2 = new CreditCardJpaEntity();
+        creditCard2.setCardNumber("5500000000000007");
+        creditCard2.setExpirationDate(LocalDate.of(2028, 6, 30));
+        creditCard2.setCvv("222");
+        creditCard2.setFullName("Account Holder Eight");
+        creditCard2.setBankAccount(bankAccount);
+        entityManager.persist(creditCard2);
+        entityManager.flush();
+
+        // Act
+        List<CreditCardJpaEntity> result = creditCardJpaDao.findByAccountId(bankAccount.getAccountId());
+
+        // Assert
+        assertNotNull(result);
+        assertEquals(2, result.size());
+        assertTrue(result.stream().anyMatch(c -> "4111111111110007".equals(c.getCardNumber())));
+        assertTrue(result.stream().anyMatch(c -> "5500000000000007".equals(c.getCardNumber())));
+    }
+
+    @Test
+    void testFindByAccountIdEmpty() {
+        // Act
+        List<CreditCardJpaEntity> result = creditCardJpaDao.findByAccountId(99999L);
+
+        // Assert
+        assertNotNull(result);
+        assertTrue(result.isEmpty());
+    }
 }
